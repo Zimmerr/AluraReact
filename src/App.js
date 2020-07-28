@@ -4,7 +4,8 @@ import './App.css'
 import Tabela from './Tabela';
 import Form from './Formulario';
 import Header from './Header';
-import PopUp from './PopUp'
+import PopUp from './PopUp';
+
 
 class App extends Component {
 
@@ -60,6 +61,7 @@ class App extends Component {
       <Fragment>
         <Header />
         <div className="container mb-10">
+          <h1>Casa do Código</h1>
           <Tabela autores = { this.state.autores } removeAutor = { this.removeAutor } />
           <Form escutadorDeSubmit={this.escutadorDeSubmit}/>
         </div>
