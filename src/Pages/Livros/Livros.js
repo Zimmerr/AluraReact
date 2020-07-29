@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import Header from './Header';
-import DataTable from './DataTable';
-import PopUp from './PopUp';
-import ApiService from './ApiService';
+import Header from '../../Components/Header/Header';
+import DataTable from '../../Components/DataTable/DataTable';
+import PopUp from '../../utils/PopUp';
+import ApiService from '../../utils/ApiService';
 
 class Livros extends Component {
   constructor(props) {
@@ -15,8 +15,7 @@ class Livros extends Component {
   }
 
   componentDidMount(){
-    ApiService.ListaLivros()
-        .then(res => ApiService.TrataErros(res))
+    ApiService.ListaLivros()      
         .then(res => {
             if(res.message === 'success'){
             PopUp.exibeMensagem('success', 'Livros listados com sucesso')
