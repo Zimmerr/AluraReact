@@ -8,35 +8,63 @@ import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 
 
+const CellDeleta = ({removeDados, id, titulo}) => {
+  if(!removeDados){
+    return null;
+  }
+  if(titulo){
+    return <TableCell> Remover </TableCell>
+  }
+  return(
+    <TableCell>
+      <Button
+        variant="contained"
+        color="primary" 
+        onClick = {() => {
+          removeDados(id) 
+        }}
+      >
+        Remover
+      </Button>
+    </TableCell>
+  )
+  
+}
 
-class Tabela extends Component {
-  render() {
-    const { autores, removeAutor } = this.props;
+const Tabela = props => {
+
+    const { dados, removeDados, campos } = props;
     return(
       <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Autores</TableCell>
-              <TableCell>Livros</TableCell>
-              <TableCell>Preços</TableCell>
-              <TableCell>Remover</TableCell>
+              {
+                campos.map(campo => (
+                  <TableCell>{campo.titulo}</TableCell>
+                ))
+              }
+              <CellDeleta removeDados = {removeDados} titulo/>
             </TableRow>
           </TableHead>
           <TableBody>
-          {autores.map(autor => 
+          {dados.map(dados => 
              (
-              <TableRow key={autor.id}>
-                <TableCell>{autor.nome}</TableCell>
-                <TableCell>{autor.livro}</TableCell>
-                <TableCell>{autor.preco}</TableCell>
-                <TableCell><Button variant="contained" color="primary" onClick = {() => {removeAutor(autor.id) }}>Remover</Button></TableCell>
+              <TableRow key={dados.id}>
+                {
+                  campos.map(campo => (
+                    <TableCell>{dados[campo.dado]}</TableCell>
+                  ))
+                }
+                <CellDeleta
+                  id={dados.id}
+                  removeDados={removeDados} />
               </TableRow>
             )
           )}
           </TableBody>
       </Table>
     );
-  }
+  
 }
 
 export default Tabela;

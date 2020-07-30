@@ -58,15 +58,18 @@ class Home extends Component {
   
   render() {
 
-    ApiService.ListaLivros()
-    .then(res => console.log(res.data));
+    const campos = [
+      {titulo: "Autores", dado: "nome"},
+      {titulo: "Livro", dado: "livro"},
+      {titulo: "Preço", dado: "preco"},
+    ]
 
     return (
       <Fragment>
         <Header />
         <div className="container mb-10">
           <h1>Casa do Código</h1>
-          <Tabela autores = { this.state.autores } removeAutor = { this.removeAutor } />
+          <Tabela campos={campos} dados = { this.state.autores } removeDados = { this.removeAutor } />
           <Form escutadorDeSubmit={this.escutadorDeSubmit}/>
         </div>
       </Fragment>
