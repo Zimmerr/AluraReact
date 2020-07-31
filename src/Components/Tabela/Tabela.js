@@ -1,5 +1,5 @@
   
-import React, { Component } from 'react'
+import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -8,13 +8,11 @@ import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 
 
-const CellDeleta = ({removeDados, id, titulo}) => {
+const CellDeleta = ({removeDados, id}) => {
   if(!removeDados){
     return null;
   }
-  if(titulo){
-    return <TableCell> Remover </TableCell>
-  }
+
   return(
     <TableCell>
       <Button
@@ -31,6 +29,13 @@ const CellDeleta = ({removeDados, id, titulo}) => {
   
 }
 
+const TituloDeleta = ({removeDados}) => {
+  if(!removeDados){
+    return null
+  }
+  return <TableCell> Remover </TableCell>
+}
+
 const Tabela = props => {
 
     const { dados, removeDados, campos } = props;
@@ -43,7 +48,7 @@ const Tabela = props => {
                   <TableCell>{campo.titulo}</TableCell>
                 ))
               }
-              <CellDeleta removeDados = {removeDados} titulo/>
+              <TituloDeleta removeDados = {removeDados}/>
             </TableRow>
           </TableHead>
           <TableBody>
